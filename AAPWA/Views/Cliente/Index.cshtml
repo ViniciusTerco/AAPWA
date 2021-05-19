@@ -1,0 +1,54 @@
+@using AAPWA.ViewsModel.Cliente
+@model AAPWA.ViewsModel.Cliente.IndexViewModel
+
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+@if (@Model.MensagemSucesso != null) {
+    <p><em>@Model.MensagemSucesso</em></p>
+}
+
+@if (@Model.MensagemErro != null) {
+    <p><em>@Model.MensagemErro</em></p>
+}
+
+<a href="/Cliente/Adicionar">Adicionar</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Documento</th>
+        <th>Data Nascimento</th>
+        <th>Nome</th>
+        <th>Endereço</th>
+        <th>Observação</th>
+        <th>Data Inclusão</th>
+        <th>Data Modificação</th>
+        <th>Evento</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Cliente cliente in @Model.cliente) {
+        <tr>
+            <td>@cliente.id</td>
+            <td>@cliente.tipo</td>
+            <td>@cliente.documento</td>
+            <td>@cliente.dataNascimento</td>
+            <td>@cliente.nome</td>
+            <td>@cliente.endereco</td>
+            <td>@cliente.observacao</td>
+            <td>@cliente.dataInclusao</td>
+            <td>@cliente.dataModificacao</td>
+            <td>@cliente.Evento</td>
+            <td>@cliente.email</td>
+            <td>
+                <a href="/Cliente/Editar/@cliente.id">Editar</a>
+                <a href="/Cliente/Remover/@cliente.id">Remover</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

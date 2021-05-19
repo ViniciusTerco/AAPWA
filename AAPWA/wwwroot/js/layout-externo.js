@@ -1,0 +1,3 @@
+/**
+ * Scripts - Layout Externo
+ */
