@@ -1,19 +1,69 @@
-@page
-@model AAPWA.Views.Convidado.Editar
-
+@model AAPWA.ViewsModel.Convidado.EditarViewModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Editar";
 }
 
-<!DOCTYPE html>
+<h2>Editar Convidado <strong>@Model.nome</strong></h2>
+<hr/>
+<a href="/">Voltar</a>
+<hr/>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+@if (@Model.FormMensagensErro != null) {
+    <ul>
+        @foreach (var msgErro in @Model.FormMensagensErro) {
+            <li>@msgErro</li>
+        }
+    </ul>
+}
+
+<form action="/Convidado/Editar/@Model.id" method="post">
+   <div>
+           <label for="nome">Nome</label>
+           <input id="nome" name="nome" type="text" value="@Model.nome">
+       </div>
+   
+       <div>
+           <label for="email">E-mail</label>
+           <input id="email" name="email" type="text" value="@Model.email">
+       </div>
+   
+       <div>
+           <label for="documento">Documento</label>
+           <input id="documento" name="documento" type="text" value="@Model.documento">
+       </div>
+   
+       <div>
+           <label for="dataNascimento">Data Nascimento</label>
+           <input id="dataNascimento" name="dataNascimento" type="date" value="@Model.dataNacimento">
+       </div>
+   
+       <div>
+           <label for="evento">Evento</label>
+           <input id="evento" name="evento" type="text" value="@Model.evento">
+       </div>
+       
+       <div>
+           <label for="situacao">Situação</label>
+           <input id="situacao" name="situacao" type="text" value="@Model.situacao">
+       </div>
+       
+       <div>
+           <label for="observacao">Observação</label>
+           <input id="observacao" name="observacao" type="text" value="@Model.observacao">
+       </div>
+           
+       <div>
+           <label for="dataInclusao">Data Inclusão</label>
+           <input id="dataInclusao" name="dataInclusao" type="date" value="@Model.dataInclusao">
+       </div>
+           
+       <div>
+           <label for="dataModificacao">Data Motificação</label>
+           <input id="dataModificacao" name="dataModificacao" type="date" value="@Model.dataModificacao">
+       </div>
+
+
+    <div>
+        <input name="confirmar" type="submit" value="Confirmar">
+    </div>
+</form>

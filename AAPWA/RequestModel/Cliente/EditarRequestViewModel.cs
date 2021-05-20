@@ -1,6 +1,6 @@
 namespace AAPWA.RequestModel.Cliente
 {
-    public class EditarRequestViewModel
+    public class EditarRequestViewModel: AdicionarRequestViewModel
     {
         
     }

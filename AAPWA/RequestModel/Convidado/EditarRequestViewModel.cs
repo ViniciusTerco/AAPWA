@@ -1,6 +1,6 @@
 namespace AAPWA.RequestModel.Convidado
 {
-    public class EditarRequestViewModel
+    public class EditarRequestViewModel: AdicionarRequestViewModel
     {
         
     }

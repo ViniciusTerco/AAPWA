@@ -2,7 +2,7 @@
 @model AAPWA.ViewsModel.Evento.IndexViewModel
 
 @{
-    ViewData["Title"] = "Convidado";
+    ViewData["Title"] = "Evento";
 }
 
 @if (@Model.MensagemSucesso != null) {
@@ -18,33 +18,39 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Documento</th>
-        <th>Data Nascimento</th>
-        <th>Evento</th>
+        <th>Tipo</th>
+        <th>Descricao</th>
+        <th>Data Inicio</th>
+        <th>Data Fim</th>
+        <th>Hora Inicial</th>
+        <th>Hora Final</th>
         <th>Situação</th>
+        <th>Descrição Local</th>
         <th>Observação</th>
         <th>Data Inclusão</th>
         <th>Data Modificação</th>
     </tr>
     </thead>
     <tbody>
-    @foreach (Evento evento in @Model.evento) {
+    
+    @foreach (Evento evento in @Model.evento)
+    {
         <tr>
-            <td>@convidado.id</td>
-            <td>@convidado.nome</td>
-            <td>@convidado.email</td>
-            <td>@convidado.documento</td>
-            <td>@convidado.dataNacimento</td>
-            <td>@convidado.evento</td>
-            <td>@convidado.situacao</td>
-            <td>@convidado.observacao</td>
-            <td>@convidado.dataInclusao</td>
-            <td>@convidado.dataModificacao</td>
+            <td>@evento.id</td>
+            <td>@evento.tipo</td>
+            <td>@evento.dataInicio</td>
+            <td>@evento.dataFim</td>
+            <td>@evento.horaInicial</td>
+            <td>@evento.horaFinal</td>
+            <td>@evento.situacao</td>
+            <td>@evento.descricaoLocal</td>
+            <td>@evento.endereco</td>
+            <td>@evento.observacao</td>
+            <td>@evento.dataInclusao</td>
+            <td>@evento.dataModificacao</td>
             <td>
-                <a href="/Convidado/Editar/@convidado.id">Editar</a>
-                <a href="/Convidado/Remover/@convidado.id">Remover</a>
+                <a href="/Evento/Editar/@evento.id">Editar</a>
+                <a href="/Evento/Remover/@evento.id">Remover</a>
             </td>
         </tr>
     }

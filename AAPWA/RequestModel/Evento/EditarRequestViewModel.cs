@@ -1,6 +1,6 @@
 namespace AAPWA.RequestModel.Evento
 {
-    public class EditarRequestViewModel
+    public class EditarRequestViewModel: AdicionarRequestViewModel
     {
         
     }

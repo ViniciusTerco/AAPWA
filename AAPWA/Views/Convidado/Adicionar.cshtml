@@ -1,19 +1,68 @@
-@page
-@model AAPWA.Views.Convidado.Adicionar
-
+@model AAPWA.ViewsModel.Convidado.AdicionarViewModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Adicionar";
 }
 
-<!DOCTYPE html>
+<h2>Adicionar Convidado</h2>
+<hr/>
+<a href="/">Voltar</a>
+<hr/>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
+@if (@Model.FormMensagensErro != null) {
+    <ul>
+        @foreach (var msgErro in @Model.FormMensagensErro) {
+            <li>@msgErro</li>
+        }
+    </ul>
+}
+
+<form action="/Convidado/Adicionar" method="post">
+    <div>
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text">
+    </div>
+
+    <div>
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="text">
+    </div>
+
+    <div>
+        <label for="documento">Documento</label>
+        <input id="documento" name="documento" type="text">
+    </div>
+
+    <div>
+        <label for="dataNascimento">Data Nascimento</label>
+        <input id="dataNascimento" name="dataNascimento" type="date">
+    </div>
+
+    <div>
+        <label for="evento">Evento</label>
+        <input id="evento" name="evento" type="text">
+    </div>
     
-</div>
-</body>
-</html>
+    <div>
+        <label for="situacao">Situação</label>
+        <input id="situacao" name="situacao" type="text">
+    </div>
+    
+    <div>
+        <label for="observacao">Observação</label>
+        <input id="observacao" name="observacao" type="text">
+    </div>
+        
+    <div>
+        <label for="dataInclusao">Data Inclusão</label>
+        <input id="dataInclusao" name="dataInclusao" type="date">
+    </div>
+        
+    <div>
+        <label for="dataModificacao">Data Motificação</label>
+        <input id="dataModificacao" name="dataModificacao" type="date">
+    </div>
+
+    <div>
+        <input name="confirmar" type="submit" value="Confirmar">
+    </div>
+</form>

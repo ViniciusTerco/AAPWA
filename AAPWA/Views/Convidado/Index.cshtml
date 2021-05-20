@@ -1,1 +1,53 @@
-i@uusingEventoEventoeventoeventoo
+@using AAPWA.ViewsModel.Convidado
+@model AAPWA.ViewsModel.Convidado.IndexViewModel
+
+@{
+    ViewData["Title"] = "Convidado";
+}
+
+@if (@Model.MensagemSucesso != null) {
+    <p><em>@Model.MensagemSucesso</em></p>
+}
+
+@if (@Model.MensagemErro != null) {
+    <p><em>@Model.MensagemErro</em></p>
+}
+
+<a href="/Convidado/Adicionar">Adicionar</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Documento</th>
+        <th>Data Nascimento</th>
+        <th>Evento</th>
+        <th>Situação</th>
+        <th>Observação</th>
+        <th>Data Inclusão</th>
+        <th>Data Modificação</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Convidado convidado in @Model.convidado)
+    {
+        <tr>
+            <td>@convidado.id</td>
+            <td>@convidado.nome</td>
+            <td>@convidado.email</td>
+            <td>@convidado.documento</td>
+            <td>@convidado.dataNacimento</td>
+            <td>@convidado.evento</td>
+            <td>@convidado.situacao</td>
+            <td>@convidado.observacao</td>
+            <td>@convidado.dataInclusao</td>
+            <td>@convidado.dataModificacao</td>
+            <td>
+                <a href="/Convidado/Editar/@convidado.id">Editar</a>
+                <a href="/Convidado/Remover/@convidado.id">Remover</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

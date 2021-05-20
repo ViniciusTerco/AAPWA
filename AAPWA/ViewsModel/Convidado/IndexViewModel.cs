@@ -5,9 +5,17 @@ namespace AAPWA.ViewsModel.Convidado
     public class IndexViewModel
     {
         public ICollection<Convidado> convidado { get; set; }
-    
-    }
+        
+        public string MensagemSucesso { get; set; }
+        public string MensagemErro { get; set; }
+        public IndexViewModel()
+        {
+            convidado = new List<Convidado>();
+        }
 
+    }
+    
+   
     public class Convidado
     {
         public string id { get; set; }

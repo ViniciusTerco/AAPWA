@@ -44,7 +44,7 @@ namespace AAPWA.Controllers
                 await _acessoService.AutenticaUsuario(email,senha);
                 TempData["msg-login"] = "Login com Sucesso";
                 TempData["logado"] = email;
-                return RedirectToAction("");
+                return RedirectToAction("Login");
             }
             catch (CadastrarUsuarioExecption exception)
             {

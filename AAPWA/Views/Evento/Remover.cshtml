@@ -1,19 +1,41 @@
-@page
-@model AAPWA.Views.Evento.Remover
-
+@model AAPWA.ViewsModel.Evento.RemoverViewModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Remover";
 }
 
-<!DOCTYPE html>
+<h2>Remover Evento <strong>@Model.tipo</strong></h2>
+<hr/>
+<a href="/">Voltar</a>
+<hr/>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
+@if (@Model.FormMensagensErro != null) {
+    <ul>
+        @foreach (var msgErro in @Model.FormMensagensErro) {
+            <li>@msgErro</li>
+        }
+    </ul>
+}
+
+<form action="/Evento/Remover/@Model.id" method="post">
+    <p>Dados do Evento a remover</p>
+    <ul>
+         <li><strong>Id: </strong> @Model.id</li>
+        <li><strong>Tipo: </strong> @Model.tipo</li>
+        <li><strong>Descrição: </strong> @Model.descricao</li>
+        <li><strong>Data Inicial: </strong> @Model.dataInicio</li>
+        <li><strong>Data Final: </strong> @Model.dataFim</li>
+        <li><strong>Hora Inicial: </strong> @Model.horaInicial</li>
+        <li><strong>Hora Final: </strong> @Model.horaFinal</li>
+        <li><strong>Situação: </strong> @Model.situacao</li>
+        <li><strong>Descrição Local: </strong> @Model.descricaoLocal</li>
+        <li><strong>Observação: </strong> @Model.observacao</li>
+        <li><strong>Data Inclusão: </strong> @Model.dataInclusao</li>
+        <li><strong>Data Modificação: </strong> @Model.dataModificacao</li>
+    </ul>
     
-</div>
-</body>
-</html>
+    <p><strong>Atenção:</strong> Essa operação não pode ser desfeita!</p>
+
+    <div>
+        <input name="confirmar" type="submit" value="Confirmar">
+    </div>
+</form>

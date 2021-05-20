@@ -111,5 +111,116 @@ namespace AAPWA.Models.Buffet.Cliente
             return listaClientes.ToList();
             
         }
+        
+          
+        public ClienteEntity ObterPorId(Guid id)
+        {
+            try {
+                return _databaseContext.Clientes
+                    .Include(c => c.Id)
+                    .First(c => c.Id == id);
+            } catch {
+                throw new Exception("Cliente de ID #" + id + " não encontrado");
+            }
+        }
+
+        public ClienteEntity Adicionar(IDadosBasicosClienteModel dadosBasicos)
+        {
+            var novoCliente = ValidarDadosBasicos(dadosBasicos);
+            _databaseContext.Clientes.Add(novoCliente);
+            _databaseContext.SaveChanges();
+
+            return novoCliente;
+        }
+
+        public ClienteEntity Editar(
+            Guid id,
+            IDadosBasicosClienteModel dadosBasicos
+        )
+        {
+            var clienteEntity = ObterPorId(id);
+            clienteEntity = ValidarDadosBasicos(dadosBasicos, clienteEntity);
+            _databaseContext.SaveChanges();
+
+            return clienteEntity;
+        }
+
+        public ClienteEntity Remover(Guid id)
+        {
+            var clienteEntity = ObterPorId(id);
+            _databaseContext.Clientes.Remove(clienteEntity);
+            _databaseContext.SaveChanges();
+
+            return clienteEntity;
+        }
+        
+        private ClienteEntity ValidarDadosBasicos(
+            IDadosBasicosClienteModel dadosBasicos,
+            ClienteEntity entidadeExistente = null
+        )
+        {
+            // Instanciar ou utilizar entidade previamente instanciada
+            var entidade = entidadeExistente ?? new ClienteEntity();
+
+            // Validar e Atribuir Descrição
+            if (dadosBasicos.tipo == null) {
+                throw new Exception("O Tipo é obrigatório");
+            }
+
+            if (dadosBasicos.documento == null) {
+                throw new Exception("O documento é obrigatório");
+            }
+            
+            if (dadosBasicos.dataNascimento == null) {
+                throw new Exception("A Data Nascimento é obrigatória");
+            }
+
+            if (dadosBasicos.nome == null) {
+                throw new Exception("O Nome é obrigatório");
+            }
+           
+            if (dadosBasicos.endereco == null) {
+                throw new Exception("O Endereço é obrigatório");
+            }
+            
+            if (dadosBasicos.observacao == null) {
+                throw new Exception("A Observação é obrigatória");
+            }
+            
+            if (dadosBasicos.dataInclusao == null) {
+                throw new Exception("A Data é obrigatória");
+            }
+            
+            if (dadosBasicos.dataModificacao == null) {
+                throw new Exception("A Data é obrigatória");
+            }
+            
+            if (dadosBasicos.Eventos == null) {
+                throw new Exception("O Evento é obrigatório");
+            }
+            
+            if (dadosBasicos.email == null) {
+                throw new Exception("O E-mail é obrigatório");
+            }
+            
+            return entidade;
+        }
+        
+        public interface IDadosBasicosClienteModel
+        {
+            public Guid Id { get; set; }
+            public string tipo { get; set; }
+            public int documento { get; set; }
+            public DateTime dataNascimento { get; set; }
+            public string nome { get; set; }
+            public string endereco { get; set; }
+            public string observacao { get; set; }
+            public DateTime dataInclusao { get; set; }
+            public DateTime dataModificacao { get; set; }
+            public ICollection<EventoEntity> Eventos { get; set; }
+            public string email { get; set; }
+
+        }
+        
     }
 }

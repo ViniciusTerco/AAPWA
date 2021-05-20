@@ -5,9 +5,19 @@ namespace AAPWA.ViewsModel.Cliente
     public class IndexViewModel
     {
         public ICollection<Cliente> cliente { get; set; }
+        
+        public string MensagemSucesso { get; set; }
+        public string MensagemErro { get; set; }
     
-    }
+        public IndexViewModel()
+        {
+            cliente = new List<Cliente>();
+        }
 
+        
+    }
+    
+        
     public class Cliente
     {
         public string id { get; set; }

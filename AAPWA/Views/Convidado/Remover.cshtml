@@ -1,19 +1,38 @@
-@page
-@model AAPWA.Views.Convidado.Remover
-
+@model AAPWA.ViewsModel.Convidado.RemoverViewModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Remover";
 }
 
-<!DOCTYPE html>
+<h2>Remover Convidado <strong>@Model.nome</strong></h2>
+<hr/>
+<a href="/">Voltar</a>
+<hr/>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
+@if (@Model.FormMensagensErro != null) {
+    <ul>
+        @foreach (var msgErro in @Model.FormMensagensErro) {
+            <li>@msgErro</li>
+        }
+    </ul>
+}
+
+<form action="/Convidado/Remover/@Model.id" method="post">
+    <p>Dados do Convidado a remover</p>
+    <ul>
+        <li><strong>Id: </strong> @Model.id</li>
+        <li><strong>Nome: </strong> @Model.nome</li>
+        <li><strong>Documento: </strong> @Model.documento</li>
+        <li><strong>Data Nascimento: </strong> @Model.dataNacimento</li>
+        <li><strong>Evento: </strong> @Model.evento</li>
+        <li><strong>Situação: </strong> @Model.situacao</li>
+        <li><strong>Observação: </strong> @Model.observacao</li>
+        <li><strong>Data Inclusão: </strong> @Model.dataInclusao</li>
+        <li><strong>Data Modificação: </strong> @Model.dataModificacao</li>
+    </ul>
     
-</div>
-</body>
-</html>
+    <p><strong>Atenção:</strong> Essa operação não pode ser desfeita!</p>
+
+    <div>
+        <input name="confirmar" type="submit" value="Confirmar">
+    </div>
+</form>
